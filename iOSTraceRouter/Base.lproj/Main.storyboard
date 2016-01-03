@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,87 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ky-dr-kaB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y28-67-30U">
+                                        <rect key="frame" x="532" y="23" width="48" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ksS-Tr-yXR"/>
+                                            <constraint firstAttribute="width" constant="48" id="y42-8p-a8j"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="90P-rV-6Oi"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-5r-bS0">
+                                        <rect key="frame" x="20" y="23" width="442" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hx-Kj-M3q">
+                                        <rect key="frame" x="472" y="23" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="fPg-jV-1Ti"/>
+                                        </constraints>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" red="0.98039215690000003" green="0.91372549020000005" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vOS-c5-pS3"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGk-Rr-C39">
+                                        <rect key="frame" x="20" y="73" width="560" height="507"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Wle-LR-v3p">
+                                        <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="GGk-Rr-C39" secondAttribute="bottom" constant="20" id="8lX-4U-XLG"/>
+                                    <constraint firstItem="GGk-Rr-C39" firstAttribute="leading" secondItem="7Ky-dr-kaB" secondAttribute="leading" constant="20" id="DRd-7Y-ukV"/>
+                                    <constraint firstItem="Y28-67-30U" firstAttribute="top" secondItem="7Ky-dr-kaB" secondAttribute="top" constant="23" id="I7Z-3D-Q2R"/>
+                                    <constraint firstItem="3Hx-Kj-M3q" firstAttribute="top" secondItem="7Ky-dr-kaB" secondAttribute="top" constant="23" id="KiS-BT-xZJ"/>
+                                    <constraint firstItem="ATm-5r-bS0" firstAttribute="leading" secondItem="7Ky-dr-kaB" secondAttribute="leading" constant="20" id="QwQ-fA-rkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y28-67-30U" secondAttribute="trailing" constant="20" id="SXm-O7-YK3"/>
+                                    <constraint firstItem="Wle-LR-v3p" firstAttribute="centerX" secondItem="7Ky-dr-kaB" secondAttribute="centerX" id="WM3-O1-3Xv"/>
+                                    <constraint firstItem="3Hx-Kj-M3q" firstAttribute="leading" secondItem="ATm-5r-bS0" secondAttribute="trailing" constant="10" id="WeA-47-li3"/>
+                                    <constraint firstItem="Y28-67-30U" firstAttribute="leading" secondItem="3Hx-Kj-M3q" secondAttribute="trailing" constant="10" id="Z5c-RL-Pc7"/>
+                                    <constraint firstItem="ATm-5r-bS0" firstAttribute="top" secondItem="7Ky-dr-kaB" secondAttribute="top" constant="23" id="cgC-6d-5uE"/>
+                                    <constraint firstAttribute="trailing" secondItem="GGk-Rr-C39" secondAttribute="trailing" constant="20" id="fvG-62-tx6"/>
+                                    <constraint firstItem="GGk-Rr-C39" firstAttribute="top" secondItem="3Hx-Kj-M3q" secondAttribute="bottom" constant="20" id="jid-20-g8u"/>
+                                    <constraint firstItem="Wle-LR-v3p" firstAttribute="centerY" secondItem="7Ky-dr-kaB" secondAttribute="centerY" id="kVC-tc-a7r"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Ky-dr-kaB" secondAttribute="trailing" constant="-20" id="Nf8-mc-ILX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Ky-dr-kaB" secondAttribute="bottom" id="PLj-5a-96Y"/>
+                            <constraint firstItem="7Ky-dr-kaB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="WGV-Fw-ulD"/>
+                            <constraint firstItem="7Ky-dr-kaB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="WTx-Qa-jcC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="spinner" destination="Wle-LR-v3p" id="SS5-kZ-P3q"/>
+                        <outlet property="startBtn" destination="3Hx-Kj-M3q" id="zwd-Bg-hpO"/>
+                        <outlet property="tvTracerouteResult" destination="GGk-Rr-C39" id="vtJ-tC-hr4"/>
+                        <outlet property="txfHostname" destination="ATm-5r-bS0" id="kTt-iw-fuF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="480" y="449"/>
         </scene>
     </scenes>
 </document>
