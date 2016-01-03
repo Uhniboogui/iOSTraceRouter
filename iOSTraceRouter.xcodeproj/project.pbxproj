@@ -16,6 +16,8 @@
 		6E09F8B51C38AF4E00402A82 /* iOSTraceRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8B41C38AF4E00402A82 /* iOSTraceRouterTests.m */; };
 		6E09F8C01C38AF4E00402A82 /* iOSTraceRouterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8BF1C38AF4E00402A82 /* iOSTraceRouterUITests.m */; };
 		6E09F8D11C39352700402A82 /* TraceRouteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8D01C39352700402A82 /* TraceRouteManager.m */; };
+		6E09F8D41C3955F300402A82 /* TraceRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8D31C3955F300402A82 /* TraceRouter.m */; };
+		6E09F8D71C3960F700402A82 /* TraceRouteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8D61C3960F700402A82 /* TraceRouteResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		6E09F8C11C38AF4E00402A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E09F8CF1C39352700402A82 /* TraceRouteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraceRouteManager.h; sourceTree = "<group>"; };
 		6E09F8D01C39352700402A82 /* TraceRouteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceRouteManager.m; sourceTree = "<group>"; };
+		6E09F8D21C3955F300402A82 /* TraceRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraceRouter.h; sourceTree = "<group>"; };
+		6E09F8D31C3955F300402A82 /* TraceRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceRouter.m; sourceTree = "<group>"; };
+		6E09F8D51C3960F700402A82 /* TraceRouteResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraceRouteResult.h; sourceTree = "<group>"; };
+		6E09F8D61C3960F700402A82 /* TraceRouteResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceRouteResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,10 @@
 				6E09F8A31C38AF4D00402A82 /* Main.storyboard */,
 				6E09F8CF1C39352700402A82 /* TraceRouteManager.h */,
 				6E09F8D01C39352700402A82 /* TraceRouteManager.m */,
+				6E09F8D51C3960F700402A82 /* TraceRouteResult.h */,
+				6E09F8D61C3960F700402A82 /* TraceRouteResult.m */,
+				6E09F8D21C3955F300402A82 /* TraceRouter.h */,
+				6E09F8D31C3955F300402A82 /* TraceRouter.m */,
 				6E09F8A61C38AF4D00402A82 /* Assets.xcassets */,
 				6E09F8A81C38AF4D00402A82 /* LaunchScreen.storyboard */,
 				6E09F8AB1C38AF4D00402A82 /* Info.plist */,
@@ -275,10 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E09F8D71C3960F700402A82 /* TraceRouteResult.m in Sources */,
 				6E09F8A21C38AF4D00402A82 /* ViewController.m in Sources */,
 				6E09F89F1C38AF4D00402A82 /* AppDelegate.m in Sources */,
 				6E09F89C1C38AF4D00402A82 /* main.m in Sources */,
 				6E09F8D11C39352700402A82 /* TraceRouteManager.m in Sources */,
+				6E09F8D41C3955F300402A82 /* TraceRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

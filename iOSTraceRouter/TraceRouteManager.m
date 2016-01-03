@@ -7,6 +7,20 @@
 //
 
 #import "TraceRouteManager.h"
+#import "TraceRouter.h"
+#import "TraceRouteResult.h"
+
+/* 
+ TODO:
+  Add NSOperation property and manage operation block for tracerouteForHost
+  (For manage traceroute threads easily)
+ 
+  i.e, change tracerouteForHost: completion: function to
+   [tracerouteOperation addOperationWithBlock:^{
+       ...
+       [tr startTraceRoute];
+   }];
+ */
 
 @implementation TraceRouteManager
 + (instancetype)sharedInstance {
@@ -40,7 +54,21 @@
 
 - (void)tracerouteForHost:(NSString *)host completion:(CompletionBlock)completion
 {
-    completion(host, nil);
+    TraceRouteResult *trResult = [[TraceRouteResult alloc] initWithHostname:host];
+    TraceRouter *tr = [[TraceRouter alloc] initWithHostname:host
+                                                   tryCount:self.tryCount
+                                                     maxTTL:self.maxTTL
+                                    responseTimeoutMilliSec:self.responseTimeoutMsec
+                                          overallTimeoutSec:self.overallTimeoutSec
+                                            completionBlock:^(__autoreleasing id<TraceRouterDelegate> *result) {
+                                                completion(@"Completed", nil);
+                                            } failureBlock:^(NSError *error) {
+                                                completion(nil, error);
+                                            }];
+    
+    tr.resultDelegate = trResult;
+    
+    [tr startTraceRoute];
 }
 
 

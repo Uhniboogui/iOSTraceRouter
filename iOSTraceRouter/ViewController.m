@@ -56,4 +56,9 @@
 - (IBAction)cancelBtnTapped:(id)sender {
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.txfHostname endEditing:YES];
+}
+
 @end
