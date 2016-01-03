@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E09F89C1C38AF4D00402A82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F89B1C38AF4D00402A82 /* main.m */; };
+		6E09F89F1C38AF4D00402A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F89E1C38AF4D00402A82 /* AppDelegate.m */; };
+		6E09F8A21C38AF4D00402A82 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8A11C38AF4D00402A82 /* ViewController.m */; };
+		6E09F8A51C38AF4D00402A82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E09F8A31C38AF4D00402A82 /* Main.storyboard */; };
+		6E09F8A71C38AF4D00402A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E09F8A61C38AF4D00402A82 /* Assets.xcassets */; };
+		6E09F8AA1C38AF4D00402A82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E09F8A81C38AF4D00402A82 /* LaunchScreen.storyboard */; };
+		6E09F8B51C38AF4E00402A82 /* iOSTraceRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8B41C38AF4E00402A82 /* iOSTraceRouterTests.m */; };
+		6E09F8C01C38AF4E00402A82 /* iOSTraceRouterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E09F8BF1C38AF4E00402A82 /* iOSTraceRouterUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E09F8B11C38AF4E00402A82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E09F88F1C38AF4D00402A82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E09F8961C38AF4D00402A82;
+			remoteInfo = iOSTraceRouter;
+		};
+		6E09F8BC1C38AF4E00402A82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E09F88F1C38AF4D00402A82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E09F8961C38AF4D00402A82;
+			remoteInfo = iOSTraceRouter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E09F8971C38AF4D00402A82 /* iOSTraceRouter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTraceRouter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E09F89B1C38AF4D00402A82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6E09F89D1C38AF4D00402A82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6E09F89E1C38AF4D00402A82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6E09F8A01C38AF4D00402A82 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6E09F8A11C38AF4D00402A82 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6E09F8A41C38AF4D00402A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6E09F8A61C38AF4D00402A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E09F8A91C38AF4D00402A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6E09F8AB1C38AF4D00402A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E09F8B01C38AF4E00402A82 /* iOSTraceRouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTraceRouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E09F8B41C38AF4E00402A82 /* iOSTraceRouterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTraceRouterTests.m; sourceTree = "<group>"; };
+		6E09F8B61C38AF4E00402A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E09F8BB1C38AF4E00402A82 /* iOSTraceRouterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTraceRouterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E09F8BF1C38AF4E00402A82 /* iOSTraceRouterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTraceRouterUITests.m; sourceTree = "<group>"; };
+		6E09F8C11C38AF4E00402A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E09F8941C38AF4D00402A82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8AD1C38AF4E00402A82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8B81C38AF4E00402A82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E09F88E1C38AF4D00402A82 = {
+			isa = PBXGroup;
+			children = (
+				6E09F8991C38AF4D00402A82 /* iOSTraceRouter */,
+				6E09F8B31C38AF4E00402A82 /* iOSTraceRouterTests */,
+				6E09F8BE1C38AF4E00402A82 /* iOSTraceRouterUITests */,
+				6E09F8981C38AF4D00402A82 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6E09F8981C38AF4D00402A82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E09F8971C38AF4D00402A82 /* iOSTraceRouter.app */,
+				6E09F8B01C38AF4E00402A82 /* iOSTraceRouterTests.xctest */,
+				6E09F8BB1C38AF4E00402A82 /* iOSTraceRouterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E09F8991C38AF4D00402A82 /* iOSTraceRouter */ = {
+			isa = PBXGroup;
+			children = (
+				6E09F89D1C38AF4D00402A82 /* AppDelegate.h */,
+				6E09F89E1C38AF4D00402A82 /* AppDelegate.m */,
+				6E09F8A01C38AF4D00402A82 /* ViewController.h */,
+				6E09F8A11C38AF4D00402A82 /* ViewController.m */,
+				6E09F8A31C38AF4D00402A82 /* Main.storyboard */,
+				6E09F8A61C38AF4D00402A82 /* Assets.xcassets */,
+				6E09F8A81C38AF4D00402A82 /* LaunchScreen.storyboard */,
+				6E09F8AB1C38AF4D00402A82 /* Info.plist */,
+				6E09F89A1C38AF4D00402A82 /* Supporting Files */,
+			);
+			path = iOSTraceRouter;
+			sourceTree = "<group>";
+		};
+		6E09F89A1C38AF4D00402A82 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E09F89B1C38AF4D00402A82 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6E09F8B31C38AF4E00402A82 /* iOSTraceRouterTests */ = {
+			isa = PBXGroup;
+			children = (
+				6E09F8B41C38AF4E00402A82 /* iOSTraceRouterTests.m */,
+				6E09F8B61C38AF4E00402A82 /* Info.plist */,
+			);
+			path = iOSTraceRouterTests;
+			sourceTree = "<group>";
+		};
+		6E09F8BE1C38AF4E00402A82 /* iOSTraceRouterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6E09F8BF1C38AF4E00402A82 /* iOSTraceRouterUITests.m */,
+				6E09F8C11C38AF4E00402A82 /* Info.plist */,
+			);
+			path = iOSTraceRouterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E09F8961C38AF4D00402A82 /* iOSTraceRouter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E09F8C41C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouter" */;
+			buildPhases = (
+				6E09F8931C38AF4D00402A82 /* Sources */,
+				6E09F8941C38AF4D00402A82 /* Frameworks */,
+				6E09F8951C38AF4D00402A82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSTraceRouter;
+			productName = iOSTraceRouter;
+			productReference = 6E09F8971C38AF4D00402A82 /* iOSTraceRouter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E09F8AF1C38AF4E00402A82 /* iOSTraceRouterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E09F8C71C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouterTests" */;
+			buildPhases = (
+				6E09F8AC1C38AF4E00402A82 /* Sources */,
+				6E09F8AD1C38AF4E00402A82 /* Frameworks */,
+				6E09F8AE1C38AF4E00402A82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E09F8B21C38AF4E00402A82 /* PBXTargetDependency */,
+			);
+			name = iOSTraceRouterTests;
+			productName = iOSTraceRouterTests;
+			productReference = 6E09F8B01C38AF4E00402A82 /* iOSTraceRouterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6E09F8BA1C38AF4E00402A82 /* iOSTraceRouterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E09F8CA1C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouterUITests" */;
+			buildPhases = (
+				6E09F8B71C38AF4E00402A82 /* Sources */,
+				6E09F8B81C38AF4E00402A82 /* Frameworks */,
+				6E09F8B91C38AF4E00402A82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E09F8BD1C38AF4E00402A82 /* PBXTargetDependency */,
+			);
+			name = iOSTraceRouterUITests;
+			productName = iOSTraceRouterUITests;
+			productReference = 6E09F8BB1C38AF4E00402A82 /* iOSTraceRouterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E09F88F1C38AF4D00402A82 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Songhyun;
+				TargetAttributes = {
+					6E09F8961C38AF4D00402A82 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					6E09F8AF1C38AF4E00402A82 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 6E09F8961C38AF4D00402A82;
+					};
+					6E09F8BA1C38AF4E00402A82 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 6E09F8961C38AF4D00402A82;
+					};
+				};
+			};
+			buildConfigurationList = 6E09F8921C38AF4D00402A82 /* Build configuration list for PBXProject "iOSTraceRouter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E09F88E1C38AF4D00402A82;
+			productRefGroup = 6E09F8981C38AF4D00402A82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E09F8961C38AF4D00402A82 /* iOSTraceRouter */,
+				6E09F8AF1C38AF4E00402A82 /* iOSTraceRouterTests */,
+				6E09F8BA1C38AF4E00402A82 /* iOSTraceRouterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E09F8951C38AF4D00402A82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E09F8AA1C38AF4D00402A82 /* LaunchScreen.storyboard in Resources */,
+				6E09F8A71C38AF4D00402A82 /* Assets.xcassets in Resources */,
+				6E09F8A51C38AF4D00402A82 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8AE1C38AF4E00402A82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8B91C38AF4E00402A82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E09F8931C38AF4D00402A82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E09F8A21C38AF4D00402A82 /* ViewController.m in Sources */,
+				6E09F89F1C38AF4D00402A82 /* AppDelegate.m in Sources */,
+				6E09F89C1C38AF4D00402A82 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8AC1C38AF4E00402A82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E09F8B51C38AF4E00402A82 /* iOSTraceRouterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E09F8B71C38AF4E00402A82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E09F8C01C38AF4E00402A82 /* iOSTraceRouterUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E09F8B21C38AF4E00402A82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E09F8961C38AF4D00402A82 /* iOSTraceRouter */;
+			targetProxy = 6E09F8B11C38AF4E00402A82 /* PBXContainerItemProxy */;
+		};
+		6E09F8BD1C38AF4E00402A82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E09F8961C38AF4D00402A82 /* iOSTraceRouter */;
+			targetProxy = 6E09F8BC1C38AF4E00402A82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6E09F8A31C38AF4D00402A82 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E09F8A41C38AF4D00402A82 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6E09F8A81C38AF4D00402A82 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E09F8A91C38AF4D00402A82 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6E09F8C21C38AF4E00402A82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E09F8C31C38AF4E00402A82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E09F8C51C38AF4E00402A82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = iOSTraceRouter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6E09F8C61C38AF4E00402A82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = iOSTraceRouter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6E09F8C81C38AF4E00402A82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iOSTraceRouterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSTraceRouter.app/iOSTraceRouter";
+			};
+			name = Debug;
+		};
+		6E09F8C91C38AF4E00402A82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iOSTraceRouterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSTraceRouter.app/iOSTraceRouter";
+			};
+			name = Release;
+		};
+		6E09F8CB1C38AF4E00402A82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSTraceRouterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = iOSTraceRouter;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		6E09F8CC1C38AF4E00402A82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSTraceRouterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iOSTraceRouterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = iOSTraceRouter;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E09F8921C38AF4D00402A82 /* Build configuration list for PBXProject "iOSTraceRouter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E09F8C21C38AF4E00402A82 /* Debug */,
+				6E09F8C31C38AF4E00402A82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E09F8C41C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E09F8C51C38AF4E00402A82 /* Debug */,
+				6E09F8C61C38AF4E00402A82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6E09F8C71C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E09F8C81C38AF4E00402A82 /* Debug */,
+				6E09F8C91C38AF4E00402A82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6E09F8CA1C38AF4E00402A82 /* Build configuration list for PBXNativeTarget "iOSTraceRouterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E09F8CB1C38AF4E00402A82 /* Debug */,
+				6E09F8CC1C38AF4E00402A82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E09F88F1C38AF4D00402A82 /* Project object */;
+}
