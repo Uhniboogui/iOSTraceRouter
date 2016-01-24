@@ -22,6 +22,10 @@
    }];
  */
 
+@interface TraceRouteManager()
+@property (strong, nonatomic) NSMutableDictionary *trDictionary;
+@end
+
 @implementation TraceRouteManager
 + (instancetype)sharedInstance {
     static TraceRouteManager *_sharedInstance = nil;
@@ -37,6 +41,7 @@
     self = [super init];
     
     if (self) {
+        self.trDictionary = [[NSMutableDictionary alloc] init];
         
         self.tryCount = 3;
         self.maxTTL = 64;
@@ -54,21 +59,34 @@
 
 - (void)tracerouteForHost:(NSString *)host completion:(CompletionBlock)completion
 {
-    TraceRouteResult *trResult = [[TraceRouteResult alloc] initWithHostname:host];
-    TraceRouter *tr = [[TraceRouter alloc] initWithHostname:host
-                                                   tryCount:self.tryCount
-                                                     maxTTL:self.maxTTL
-                                    responseTimeoutMilliSec:self.responseTimeoutMsec
-                                          overallTimeoutSec:self.overallTimeoutSec
-                                            completionBlock:^(__autoreleasing id<TraceRouterDelegate> *result) {
-                                                completion(@"Completed", nil);
-                                            } failureBlock:^(NSError *error) {
-                                                completion(nil, error);
-                                            }];
     
-    tr.resultDelegate = trResult;
-    
-    [tr startTraceRoute];
+    if ([self isAlreadyAddedHost:host] == NO) {
+        
+        TraceRouteResult *trResult = [[TraceRouteResult alloc] initWithHostname:host];
+        TraceRouter *tr = [[TraceRouter alloc] initWithHostname:host
+                                                       tryCount:self.tryCount
+                                                         maxTTL:self.maxTTL
+                                        responseTimeoutMilliSec:self.responseTimeoutMsec
+                                              overallTimeoutSec:self.overallTimeoutSec
+                                                completionBlock:^(__autoreleasing id<TraceRouterDelegate> *result) {
+                                                    completion(@"Completed", nil);
+                                                } failureBlock:^(NSError *error) {
+                                                    completion(nil, error);
+                                                }];
+        
+        tr.resultDelegate = trResult;
+        
+        self.trDictionary[host] = tr;
+        
+        [tr startTraceRoute];
+    } else {
+        
+    }
+}
+
+- (BOOL)isAlreadyAddedHost:(NSString *)host
+{
+    return self.trDictionary[host] != nil;
 }
 
 
