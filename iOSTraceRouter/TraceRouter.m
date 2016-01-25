@@ -8,6 +8,7 @@
 
 #import "TraceRouter.h"
 #include <sys/time.h>
+#include <arpa/inet.h>
 
 @interface TraceRouter()
 {
@@ -21,6 +22,7 @@
 }
 @property (nonatomic, copy, readwrite) NSData *hostAddress;
 @property (nonatomic, strong, readwrite) NSString *hostName;
+@property (nonatomic, strong, readwrite) NSString *hostIPString;
 @property (nonatomic, assign, readwrite) uint16_t identifier;
 
 @property (copy) completionBlock completion;
@@ -60,10 +62,42 @@
     NSLog(@"TraceRouter for host %@ deallocate", self.hostName);
 }
 
-- (BOOL)canGetHostIP
+- (BOOL)canGetHostAddress
 {
-#warning not implemented
-    return YES;
+    CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorDefault, (__bridge CFStringRef)self.hostName);
+    
+    if (hostRef == NULL) {
+        //fail
+        return NO;
+    }
+    
+    if (CFHostStartInfoResolution(hostRef, kCFHostAddresses, NULL) == NO) {
+        // pass an error instead of null to find out why it failed
+        return NO;
+    }
+    
+    Boolean result;
+    NSArray *addresses = (__bridge NSArray *)CFHostGetAddressing(hostRef, &result);
+    
+    if (result == NO || addresses == nil) {
+        return NO;
+    }
+    
+    result = false;
+    for (NSData *address in addresses) {
+        const struct sockaddr *addrPtr;
+        addrPtr = (struct sockaddr *)[address bytes];
+        if ([address length] >= sizeof(struct sockaddr) && addrPtr->sa_family == AF_INET) {
+            self.hostAddress = address;
+            const struct sockaddr_in *addrPtr_in = (struct sockaddr_in *)[address bytes];
+            self.hostIPString = [NSString stringWithCString:inet_ntoa(addrPtr_in->sin_addr) encoding:NSUTF8StringEncoding];
+            
+            return YES;
+        }
+    }
+    CFRelease(hostRef);
+    // no matching ipv4 address
+    return NO;
 }
 
 - (BOOL)canUseSocket
@@ -81,9 +115,12 @@
 - (void)startTraceRoute
 {
     NSLog(@"Start Trace Route!");
-    if ([self canGetHostIP] == NO) {
+    if ([self canGetHostAddress] == NO) {
         return;
     }
+    
+    NSLog(@"hostAddress : %@", self.hostAddress);
+    NSLog(@"hostIPString : %@", self.hostIPString);
     
     if ([self canUseSocket] == NO) {
         return;
