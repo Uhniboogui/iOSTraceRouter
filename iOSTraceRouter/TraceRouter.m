@@ -17,6 +17,8 @@
     int response_timeout_msec;
     int overall_timeout_sec;
     
+    CFSocketRef socketRef;
+    
     double traceroute_start_time_msec;
     double traceroute_end_time_msec;
 }
@@ -91,7 +93,7 @@
             self.hostAddress = address;
             const struct sockaddr_in *addrPtr_in = (struct sockaddr_in *)[address bytes];
             self.hostIPString = [NSString stringWithCString:inet_ntoa(addrPtr_in->sin_addr) encoding:NSUTF8StringEncoding];
-            
+            CFRelease(hostRef);
             return YES;
         }
     }
@@ -102,14 +104,71 @@
 
 - (BOOL)canUseSocket
 {
-#warning not implemented
+    int fd = -1;
+    
+    const struct sockaddr *addrPtr;
+    addrPtr = (const struct sockaddr *)[self.hostAddress bytes];
+    
+    switch (addrPtr->sa_family) {
+        case AF_INET:
+            fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_ICMP);
+            break;
+        case AF_INET6:
+            // ipv6 is not supported yet.
+        default:
+            break;
+    }
+    
+    if (fd < 0) {
+        // failed open socket
+        return NO;
+    }
+    
+    CFSocketContext socketContext = {0, (__bridge void *)(self), NULL, NULL, NULL};
+    // version, info(associated with the CFSocket object when it is created, retain callback, release callback, copyDescription callback
+    CFRunLoopSourceRef rls;
+    
+    socketRef = CFSocketCreateWithNative(NULL, fd, kCFSocketReadCallBack, SocketReadCallback, &socketContext);
+    
+    if (socketRef == NULL) {
+        // fail...
+        return NO;
+    }
+    
+    // The socket will now take care of cleaning up our file descriptor.
+    rls = CFSocketCreateRunLoopSource(NULL, socketRef, 0);
+    if (rls == NULL) {
+        //fail..
+        return NO;
+    }
+    
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
+    CFRelease(rls);
+    // 여기서 release하는거 맞는지..;
+    
     return YES;
 }
 
+static void SocketReadCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info)
+// This C routine is called by CFSocket when there's data waiting on our ICMP socket.
+// It just redirects the call to Objective-C code.
+{
+    TraceRouter *traceRouter;
+    
+    traceRouter = (__bridge TraceRouter *)info;
+//    [traceRouter readReceivedData];
+}
+
+
 - (BOOL)canSetReceiveTimeoutSocketOption
 {
-#warning not implemented
-    return YES;
+    struct timeval tv;
+    tv.tv_sec = response_timeout_msec / 1000;
+    tv.tv_usec = response_timeout_msec % 1000;
+    
+    int res = setsockopt(CFSocketGetNative(socketRef), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(struct timeval));
+    
+    return res >= 0;
 }
 
 - (void)startTraceRoute
@@ -123,10 +182,12 @@
     NSLog(@"hostIPString : %@", self.hostIPString);
     
     if ([self canUseSocket] == NO) {
+        NSLog(@"Open Socket Failed");
         return;
     }
     
     if ([self canSetReceiveTimeoutSocketOption] == NO) {
+        NSLog(@"SET Option for receive time out failed");
         return;
     }
     
