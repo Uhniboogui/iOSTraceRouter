@@ -10,6 +10,81 @@
 #include <sys/time.h>
 #include <arpa/inet.h>
 
+struct ICMPHeader {
+    uint8_t     type;
+    uint8_t     code;
+    uint16_t    checksum;
+    uint16_t    identifier;
+    uint16_t    sequenceNumber;
+    // data...
+};
+typedef struct ICMPHeader ICMPHeader;
+
+enum {
+    kICMPTypeEchoReply   = 0,           // code is always 0
+    kICMPTypeEchoRequest = 8,            // code is always 0
+    kICMPTypeTimeExceed = 11            // code is 0 for "TTL expired in transit"
+};
+
+struct IPHeader {
+    uint8_t     versionAndHeaderLength;
+    uint8_t     differentiatedServices;
+    uint16_t    totalLength;
+    uint16_t    identification;
+    uint16_t    flagsAndFragmentOffset;
+    uint8_t     timeToLive;
+    uint8_t     protocol;
+    uint16_t    headerChecksum;
+    uint8_t     sourceAddress[4];
+    uint8_t     destinationAddress[4];
+    // options...
+    // data...
+};
+typedef struct IPHeader IPHeader;
+
+static uint16_t in_cksum(const void *buffer, size_t bufferLen)
+// This is the standard BSD checksum code, modified to use modern types.
+{
+    size_t              bytesLeft;
+    int32_t             sum;
+    const uint16_t *    cursor;
+    union {
+        uint16_t        us;
+        uint8_t         uc[2];
+    } last;
+    uint16_t            answer;
+    
+    bytesLeft = bufferLen;
+    sum = 0;
+    cursor = buffer;
+    
+    /*
+     * Our algorithm is simple, using a 32 bit accumulator (sum), we add
+     * sequential 16 bit words to it, and at the end, fold back all the
+     * carry bits from the top 16 bits into the lower 16 bits.
+     */
+    while (bytesLeft > 1) {
+        sum += *cursor;
+        cursor += 1;
+        bytesLeft -= 2;
+    }
+    
+    /* mop up an odd byte, if necessary */
+    if (bytesLeft == 1) {
+        last.uc[0] = * (const uint8_t *) cursor;
+        last.uc[1] = 0;
+        sum += last.us;
+    }
+    
+    /* add back carry outs from top 16 bits to low 16 bits */
+    sum = (sum >> 16) + (sum & 0xffff); /* add hi 16 to low 16 */
+    sum += (sum >> 16);         /* add carry */
+    answer = (uint16_t) ~sum;   /* truncate to 16 bits */
+    
+    return answer;
+}
+
+
 @interface TraceRouter()
 {
     int try_cnt;
@@ -26,6 +101,8 @@
 @property (nonatomic, strong, readwrite) NSString *hostName;
 @property (nonatomic, strong, readwrite) NSString *hostIPString;
 @property (nonatomic, assign, readwrite) uint16_t identifier;
+
+@property (nonatomic, assign, readwrite) uint16_t sequenceNumber;
 
 @property (copy) completionBlock completion;
 @property (copy) failureBlock failure;
@@ -62,6 +139,19 @@
 - (void)dealloc
 {
     NSLog(@"TraceRouter for host %@ deallocate", self.hostName);
+}
+
+- (void)didFailWithErrorCode:(NSUInteger)errorCode reason:(NSString *)reason description:(NSDictionary *)description
+{
+    NSLog(@"didFailWithErrorCode : %d, reason : %@, description: %@", errorCode, reason, description);
+    // handle error with error code
+    
+    // clean up tracerouter object
+    if (socketRef) {
+        CFSocketInvalidate(socketRef);
+        CFRelease(socketRef);
+        socketRef = nil;
+    }
 }
 
 - (BOOL)canGetHostAddress
@@ -139,6 +229,7 @@
     rls = CFSocketCreateRunLoopSource(NULL, socketRef, 0);
     if (rls == NULL) {
         //fail..
+        [self didFailWithErrorCode:0 reason:@"Run Loop Source for Socket is NULL" description:nil];
         return NO;
     }
     
@@ -156,7 +247,7 @@ static void SocketReadCallback(CFSocketRef s, CFSocketCallBackType type, CFDataR
     TraceRouter *traceRouter;
     
     traceRouter = (__bridge TraceRouter *)info;
-//    [traceRouter readReceivedData];
+    [traceRouter readReceivedData];
 }
 
 
@@ -183,11 +274,13 @@ static void SocketReadCallback(CFSocketRef s, CFSocketCallBackType type, CFDataR
     
     if ([self canUseSocket] == NO) {
         NSLog(@"Open Socket Failed");
+        [self didFailWithErrorCode:0 reason:@"Open Socket Failed" description:nil];
         return;
     }
     
     if ([self canSetReceiveTimeoutSocketOption] == NO) {
         NSLog(@"SET Option for receive time out failed");
+        [self didFailWithErrorCode:0 reason:@"SET option for receive time out failed" description:nil];
         return;
     }
     
@@ -201,7 +294,68 @@ static void SocketReadCallback(CFSocketRef s, CFSocketCallBackType type, CFDataR
 
 - (void)sendICMPPacket
 {
+    NSData *payload;
+    NSMutableData *icmpPacket;
+    ICMPHeader *icmpHeaderPtr;
+    ssize_t bytesSent;
     
+    payload = [[NSString stringWithFormat:@"%44zd", 0] dataUsingEncoding:NSASCIIStringEncoding];
+    icmpPacket = [NSMutableData dataWithLength:sizeof(*icmpHeaderPtr) + [payload length]];
+    
+    icmpHeaderPtr = [icmpPacket mutableBytes];
+    icmpHeaderPtr->type = kICMPTypeEchoRequest;
+    icmpHeaderPtr->code = 0;
+    icmpHeaderPtr->identifier = OSSwapHostToBigInt16(self.identifier);
+    icmpHeaderPtr->sequenceNumber = OSSwapHostToBigInt16(self.sequenceNumber);
+    icmpHeaderPtr->checksum = 0;
+    memcpy(&icmpHeaderPtr[1], [payload bytes], [payload length]);
+    
+    // The IP checksum returns a 16-bit number that's already in correct byte order
+    // (due to wacky 1's complement maths), so we just put it into the packet as a 16-bit unit.
+    icmpHeaderPtr->checksum = in_cksum([icmpPacket bytes], [icmpPacket length]);
+    
+    if (socketRef != NULL) {
+        NSLog(@"icmpPacket bytes:\n%@", icmpPacket);
+        bytesSent = sendto(CFSocketGetNative(socketRef),
+                           [icmpPacket bytes],
+                           [icmpPacket length],
+                           0,
+                           (struct sockaddr *)[self.hostAddress bytes],
+                           (socklen_t)[self.hostAddress length]
+                           );
+    } else {
+        bytesSent = -1;
+    }
+    
+    if (bytesSent != [icmpPacket length]) {
+        NSLog(@"Byte Sent error");
+        [self didFailWithErrorCode:0 reason:@"Byte Sent error" description:nil];
+        return;
+    }
+}
+
+- (void)readReceivedData
+{
+    struct sockaddr_in recvAddr;
+    socklen_t recvAddrLen;
+    ssize_t bytesRead;
+    void *buffer;
+    enum { kBufferSize = 256 };
+    // 65535 is the maximum IP Packet size, which seems like a reasonable bound
+    
+    buffer = malloc(kBufferSize);
+    recvAddrLen = sizeof(recvAddr);
+    
+    bytesRead = recvfrom(CFSocketGetNative(socketRef), buffer, kBufferSize, 0, (struct sockaddr *)&recvAddr, &recvAddrLen);
+    
+    if (bytesRead > 0) {
+        NSMutableData *recvPacket = [NSMutableData dataWithBytes:buffer length:(NSUInteger)bytesRead];
+        NSLog(@"recvPacket:\n%@", recvPacket);
+        
+        CFSocketInvalidate(socketRef);
+        CFRelease(socketRef);
+        
+    }
 }
 
 #pragma mark - Utility Functions
